@@ -1,6 +1,7 @@
 package com.mikipmax.clienteservice.servicio;
 
 
+import com.mikipmax.clienteservice.excepciones.NotFoundException;
 import com.mikipmax.clienteservice.modelo.Cliente;
 import com.mikipmax.clienteservice.repositorio.ClienteRepositorio;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ClienteServicio {
 
     public Mono<Cliente> buscarPorId(Long id) {
         return Mono
-                .defer(() -> Mono.just(this.clienteRepositorio.findById(id).orElseThrow(() -> new RuntimeException("Entidad no encontrada"))));
+                .defer(() -> Mono.just(this.clienteRepositorio.findById(id).orElseThrow(() -> new NotFoundException("Entidad no encontrada"))));
 
     }
 
